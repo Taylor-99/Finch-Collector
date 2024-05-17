@@ -1,4 +1,7 @@
 from django.shortcuts import render
+# Import the Finch Model
+from .models import Finch
+
 
 finches = [
    {'species': 'American Goldfinch', 'description': 'A vibrant symbol of summer, sports bright yellow plumage with black wings and a distinct black cap.', 'size': 4.5, 'habitat': "Open Woodlands"},
@@ -13,4 +16,5 @@ def about(request):
     return render(request, 'about.html')
 
 def finches_index(request):
+    finches = Finch.objects.all()
     return render(request, 'finches/index.html', {'finches': finches})

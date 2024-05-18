@@ -8,10 +8,10 @@ class Finch(models.Model):
     species = models.CharField(max_length=100)
     habitat = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
-    size = models.IntegerField()
+    size = models.FloatField()
 
     def __str__(self):
         return f"A {self.species} has appeared with a length of {self.size} in."
     
     def get_absolute_url(self):
-    return reverse('detail', kwargs={'cat_id': self.id})
+        return reverse('detail', kwargs={'finch_id': self.id})

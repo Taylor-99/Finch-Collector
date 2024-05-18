@@ -1,5 +1,6 @@
 from django.db import models
-import uuid
+# Import the reverse function
+from django.urls import reverse
 
 # Create your models here.
 class Finch(models.Model):
@@ -12,3 +13,5 @@ class Finch(models.Model):
     def __str__(self):
         return f"A {self.species} has appeared with a length of {self.size} in."
     
+    def get_absolute_url(self):
+    return reverse('detail', kwargs={'cat_id': self.id})

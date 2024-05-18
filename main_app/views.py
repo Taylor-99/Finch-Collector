@@ -1,12 +1,7 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 # Import the Finch Model
 from .models import Finch
-
-
-finches = [
-   {'species': 'American Goldfinch', 'description': 'A vibrant symbol of summer, sports bright yellow plumage with black wings and a distinct black cap.', 'size': 4.5, 'habitat': "Open Woodlands"},
-   {'species': 'Black Rosy-Finch', 'description': 'A striking alpine bird, boasts a glossy black plumage with contrasting pinkish tones on its wings and belly.', 'size': 6, 'habitat': "Tundra"},
-]
 
 # Create your views here.
 def home(request):
@@ -22,3 +17,7 @@ def finches_index(request):
 def finches_detail(request, finch_id):
   finch = Finch.objects.get(id=finch_id)
   return render(request, 'finches/detail.html', { 'finch': finch })
+
+class FinchCreate(CreateView):
+  model = Finch
+  fields = ['id', 'species', 'habitat', 'size', 'description']
